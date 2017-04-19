@@ -16,8 +16,11 @@ for iter = 1:num_iters
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCost) and gradient here.
     %
-
-
+    new_theta = theta;
+    c = (X * theta) - y;
+    new_theta(1,1) = theta(1,1) - (alpha * (sum(c) / m));
+    new_theta(2,1) = theta(2,1) - (alpha * (sum(c .* X(:, 2)) / m));
+    theta = new_theta;
 
 
 
