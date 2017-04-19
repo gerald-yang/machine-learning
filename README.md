@@ -1,3 +1,3 @@
 # machine-learning
 
-## Programming exercise for Machine Learning Stanford University on Coursera
+#### Programming exercise for machine learning Stanford University on Coursera
