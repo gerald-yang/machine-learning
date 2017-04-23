@@ -82,7 +82,8 @@ X = [ones(m, 1) X];
 fprintf('Running gradient descent ...\n');
 
 % Choose some alpha value
-alpha = 0.01;
+% 0.01 is too small
+alpha = 0.1;
 num_iters = 400;
 
 % Init Theta and Run Gradient Descent 
@@ -105,6 +106,10 @@ fprintf('\n');
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
 price = 0; % You should change this
+
+f1 = (1650 - mu(1,1)) / sigma(1,1)
+f2 = (3 - mu(1,2)) / sigma(1,2)
+price = theta(1,1) + (f1 * theta(2,1)) + (f2 * theta(3,1))
 
 
 % ============================================================
@@ -151,6 +156,7 @@ fprintf('\n');
 % ====================== YOUR CODE HERE ======================
 price = 0; % You should change this
 
+price = theta(1,1) + (1650 * theta(2,1)) + (3 * theta(3,1))
 
 % ============================================================
 
