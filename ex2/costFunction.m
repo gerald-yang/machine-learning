@@ -20,11 +20,23 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
+% cost
+pos = find(y==1);
+neg = find(y==0);
+[m, n] = size(y);
 
+h = 1 ./ (1 + exp(-(X * theta)));
+cost = zeros(m, 1);
+cost(pos) = log(h(pos));
+cost(neg) = log(1 - h(neg));
+J = -(sum(cost) / m);
 
+% gradient
+grad = theta;
 
-
-
+grad(1) = (sum((h - y) .* X(:, 1)) / m);
+grad(2) = (sum((h - y) .* X(:, 2)) / m);
+grad(3) = (sum((h - y) .* X(:, 3)) / m);
 
 
 % =============================================================
