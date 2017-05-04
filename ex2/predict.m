@@ -15,10 +15,10 @@ p = zeros(m, 1);
 %               You should set p to a vector of 0's and 1's
 %
 
+res = 1 ./ (1 + exp(-(X * theta)));
 
-
-
-
+pos = find(res >= 0.5);
+p(pos) = 1;
 
 
 % =========================================================================
