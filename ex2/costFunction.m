@@ -33,11 +33,11 @@ J = -(sum(cost) / m);
 
 % gradient
 grad = theta;
+theta_size = rows(theta);
 
-grad(1) = (sum((h - y) .* X(:, 1)) / m);
-grad(2) = (sum((h - y) .* X(:, 2)) / m);
-grad(3) = (sum((h - y) .* X(:, 3)) / m);
-
+for i = 1:theta_size
+	grad(i) = (sum((h - y) .* X(:, i)) / m);
+end
 
 % =============================================================
 
