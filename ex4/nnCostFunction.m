@@ -62,17 +62,18 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+X = [ones(size(X, 1), 1) X];
 
+a2 = [ones(size(X,1), 1) sigmoid(X * Theta1')];
+a3 = sigmoid(a2 * Theta2');
 
-
-
-
-
-
-
-
-
-
+max_x = size(X,1)
+for i = 1:max_x
+	cost_m = zeros(1, num_labels);
+	cost_m(y(i)) = 1;
+	J = J + sum(cost_m .* log(a3(i,:))) + sum((1 - cost_m) .* log(1 - a3(i, :)));
+end
+J = -(J / m);
 
 
 
