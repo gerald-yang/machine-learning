@@ -22,10 +22,6 @@ p = zeros(size(X, 1), 1);
 %
 
 X = [ones(m, 1), X];
-size(X)
-size(Theta1)
-size(Theta2)
-size(p)
 
 layer2 = sigmoid(X * Theta1');
 layer2 = [ones(size(layer2(:,1)), 1) layer2];
