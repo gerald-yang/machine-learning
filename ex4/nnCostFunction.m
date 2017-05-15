@@ -62,9 +62,8 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
-X = [ones(size(X, 1), 1) X];
-
-a2 = [ones(size(X,1), 1) sigmoid(X * Theta1')];
+a1 = [ones(size(X, 1), 1) X];
+a2 = [ones(size(X,1), 1) sigmoid(a1 * Theta1')];
 a3 = sigmoid(a2 * Theta2');
 
 max_x = size(X,1);
@@ -75,14 +74,19 @@ for i = 1:max_x
 end
 J = -(J / m);
 
-% regularization
-J = J + (sum(nn_params .^ 2) * lambda / 2 / m);
+% regularization, should not include bias
+t1 = Theta1(:, 2:end)(:);
+t2 = Theta2(:, 2:end)(:);
+t1 = t1 .^ 2;
+t2 = t2 .^ 2;
+
+J = J + ((sum(t1(:)) + sum(t2(:))) * lambda / 2 / m);
 
 
 % -------------------------------------------------------------
 
 for i = 1:m
-	a_1 = X(i, :)';
+	a_1 = a1(i, :)';
 	a_2 = sigmoid(Theta1 * a_1);
 	a_2 = [1; a_2];
 	a_3 = sigmoid(Theta2 * a_2);
@@ -98,11 +102,9 @@ end
 Theta1_grad = Theta1_grad / m;
 Theta2_grad = Theta2_grad / m;
 
-%Theta1_grad = Theta1_grad + [zeros(size(Theta1(:, 1))) (Theta1 * (lambda / m))(:, 2:end)];
-%Theta2_grad = Theta2_grad + [zeros(size(Theta2(:, 1))) (Theta2 * (lambda / m))(:, 2:end)];
+Theta1_grad = Theta1_grad + [zeros(size(Theta1(:, 1))) (Theta1 * (lambda / m))(:, 2:end)];
+Theta2_grad = Theta2_grad + [zeros(size(Theta2(:, 1))) (Theta2 * (lambda / m))(:, 2:end)];
 
-Theta1_grad = Theta1_grad + (Theta1 * (lambda / m));
-Theta2_grad = Theta2_grad + (Theta2 * (lambda / m));
 
 
 % =========================================================================
