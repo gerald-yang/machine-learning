@@ -20,13 +20,14 @@ grad = zeros(size(theta));
 %
 
 
+J = sum(((X * theta) - y) .^ 2) / 2 / m;
+J = J + (sum(theta(2:end) .^ 2) * lambda / 2 / m);
 
-
-
-
-
-
-
+max_theta = size(theta(:, 1));
+grad(1) = sum(((X * theta) - y) .* X(:, 1)) / m;
+for j = 2:max_theta
+	grad(j) = (sum(((X * theta) - y) .* X(:, j)) / m) + (theta(j) * lambda / m);
+end
 
 
 
