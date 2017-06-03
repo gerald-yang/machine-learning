@@ -24,8 +24,31 @@ sigma = 0.3;
 %
 
 
+% following for loop tries to find the minimum error on cross validation set
+% with different values of C and sigma
+
+%x1 = [1 2 1]; x2 = [0 4 -1];
+%val = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
+%min_err = 1;
+
+%for tC = val
+%	for ts = val
+%		model= svmTrain(X, y, tC, @(x1, x2) gaussianKernel(x1, x2, ts));
+%		predictions = svmPredict(model, Xval);
+%		err = mean(double(predictions ~= yval));
+%		if err < min_err
+%			min_err = err;
+%			C = tC;
+%			sigma = ts;
+%		endif
+%		min_err
+%	endfor
+%endfor
 
 
+% with the minimum error
+C = 1;
+sigma = 0.1;
 
 
 
