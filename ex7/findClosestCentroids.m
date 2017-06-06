@@ -21,10 +21,15 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
+min_table = zeros(size(centroids, 1), 1);
 
-
-
-
+for x_idx = 1:size(X(:,1))
+	for c_idx = 1:size(centroids(:,1))
+		min_table(c_idx) = norm(X(x_idx, :) - centroids(c_idx, :));
+	endfor
+	[v, i] = min(min_table);
+	idx(x_idx) = i;
+endfor
 
 
 % =============================================================
