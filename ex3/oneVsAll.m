@@ -52,13 +52,8 @@ X = [ones(m, 1) X];
 options = optimset('GradObj', 'on', 'MaxIter', 50);
 
 for i = 1:num_labels
-	digit_num = i - 1;
-	if digit_num == 0
-		digit_num = 10;
-	endif
-
 	initial_theta = zeros(n + 1, 1);
-	all_theta(i, :) = (fmincg(@(t)(lrCostFunction(t, X, (y == digit_num), lambda)), initial_theta, options))';
+	all_theta(i, :) = (fmincg(@(t)(lrCostFunction(t, X, (y == i), lambda)), initial_theta, options))';
 end
 
 
